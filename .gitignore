@@ -1,6 +1,7 @@
 # Data
 aulas/
-data/movies.csv
+data/movies/movies.csv
+ciencia_dados/
 
 # Mac OS-specific storage files
 .DS_Store
