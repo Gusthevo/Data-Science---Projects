@@ -1,5 +1,8 @@
 # Data
-/data/
+<<<<<<< HEAD
+aulas/
+data/movies/raw/movies.csv
+ciencia_dados/
 
 # Mac OS-specific storage files
 .DS_Store
