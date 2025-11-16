@@ -1,6 +1,6 @@
 # Data
 aulas/
-data/movies/movies.csv
+data/movies/raw/movies.csv
 ciencia_dados/
 
 # Mac OS-specific storage files
