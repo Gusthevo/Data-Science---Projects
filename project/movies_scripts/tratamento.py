@@ -3,15 +3,19 @@ import numpy as np
 from sklearn.preprocessing import MultiLabelBinarizer
 
 if __name__ == "__main__":
-    df_movies = pd.read_csv("../../data/movies/raw/movies.csv")
-    df_ratings = pd.read_csv("../../data/movies/raw/ratings.csv")
+    df_movies = pd.read_csv("data/movies/raw/movies.csv")
+    df_ratings = pd.read_csv("data/movies/raw/ratings.csv")
 
     Dataset = pd.merge(df_movies, df_ratings[['tconst', 'averageRating', 'numVotes']], on='tconst', how='left')
+
+    print("Juntou os PDF")
 
     Dataset.drop('tconst', axis=1, inplace=True)
 
     Dataset = pd.get_dummies(Dataset, columns=['titleType'], prefix='', prefix_sep='')
     Dataset.drop('primaryTitle', axis=1, inplace=True)
+
+    print("Ajeitou titulos")
 
     Dataset['genres'] = Dataset['genres'].fillna('\\N')
     Dataset['genres'] = Dataset['genres'].apply(lambda x: [] if x == '\\N' else x.split(','))
@@ -22,6 +26,8 @@ if __name__ == "__main__":
         index=Dataset.index
     ).astype(bool)
     Dataset = pd.concat([Dataset.drop(columns=['genres']), generos_bin], axis=1)
+
+    print("Ajeitou generos")
 
     Dataset['startYear'] = Dataset['startYear'].replace('\\N', pd.NA)
     Dataset['startYear'] = Dataset['startYear'].astype('Int64')
@@ -37,7 +43,11 @@ if __name__ == "__main__":
     Dataset = pd.concat([Dataset.drop(columns=['startYear']), year_dummies], axis=1)
     Dataset.drop('endYear', axis=1, inplace=True)
 
+    print("Ajeitou anos")
+
     Dataset['isAdult'] = Dataset['isAdult'].apply(lambda x: False if x == 0 else True)
+
+    print("Ajeitou isadult")
 
     Dataset['runtimeMinutes'] = pd.to_numeric(Dataset['runtimeMinutes'], errors='coerce')
     Dataset['runtimeMinutes'] = Dataset['runtimeMinutes'].round(3)
@@ -48,6 +58,10 @@ if __name__ == "__main__":
     Dataset.drop('runtimeMinutes', axis=1, inplace=True)
     Dataset.drop('runtimeCategory', axis=1, inplace=True)
 
+    print("Ajeitou minutes")
+
     Dataset = Dataset.dropna(subset=['averageRating'])
 
-    Dataset.to_csv('../../data/movies/processed/Dataset.csv', index=False)
+    print("Limpou NAN")
+
+    Dataset.to_csv('data/movies/processed/Dataset.csv', index=False)
