@@ -2,6 +2,7 @@
 <<<<<<< HEAD
 aulas/
 data/movies/raw/movies.csv
+data/movies/processed/Dataset.csv
 ciencia_dados/
 
 # Mac OS-specific storage files
