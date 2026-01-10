@@ -1,1 +1,7 @@
+O link foi inserido aqui pois o dataset é muito grande
+
+Link de onde o dataset foi extraído:
 https://www.kaggle.com/datasets/marlesson/news-of-the-site-folhauol/data
+
+Link do dataset no drive:
+https://drive.google.com/drive/folders/1ohco8P8OybVTKJHzTZ0aSHooK1mRe275?usp=sharing
